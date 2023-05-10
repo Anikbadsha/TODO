@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:todo_app/component/customButton.dart';
+import 'package:todo_app/component/customDatePicker.dart';
 import 'package:todo_app/component/customFont.dart';
 import 'package:todo_app/component/cutomColors.dart';
 
@@ -54,12 +56,12 @@ class _AddTodopageState extends State<AddTodopage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  "Add Todos Here",
+                  "Add Todos From Here",
                   style: myFont(
-                      36, 0, 1, CustomColor.primaryColor, FontWeight.bold),
+                      24, 0, 1, CustomColor.primaryColor, FontWeight.bold),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 16,
                 ),
                 Form(
                     key: formkey,
@@ -78,7 +80,7 @@ class _AddTodopageState extends State<AddTodopage> {
                           style: TextStyle(color: CustomColor.wColor),
                         ),
                         SizedBox(
-                          height: 16,
+                          height: 12,
                         ),
                         TextFormField(
                           minLines: 3,
@@ -94,33 +96,24 @@ class _AddTodopageState extends State<AddTodopage> {
                               fillColor: CustomColor.primaryColor),
                           style: TextStyle(color: CustomColor.wColor),
                         ),
+                        SizedBox(
+                          height: 12,
+                        ),
+                        CustomDatePicker("Start Time"),
+                        SizedBox(
+                          height: 12,
+                        ),
+                        CustomDatePicker("End TIme"),
                       ],
                     )),
                 SizedBox(
-                  height: 20,
+                  height: 16,
                 ),
-                Container(
-                  height: 52,
-                  decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.shade600,
-                          spreadRadius: 1,
-                          blurRadius: 5,
-                          offset: Offset(0, 5),
-                        ),
-                      ],
-                      borderRadius: BorderRadius.circular(16),
-                      color: CustomColor.secondryColor),
-                  width: double.infinity,
-                  child: TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "Submit",
-                        style: myFont(18, 0, 1, CustomColor.primaryColor,
-                            FontWeight.w700),
-                      )),
-                )
+                customButton(
+                  CustomColor.primaryColor,
+                  12,
+                  "Create todo",
+                ),
               ],
             ),
           ),
