@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/component/customFont.dart';
-import 'package:todo_app/component/cutomColors.dart';
+import 'package:todo_app/component/customColors.dart';
 
 class CustomButton extends StatelessWidget {
   final Color? buttonColor;
