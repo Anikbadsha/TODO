@@ -4,8 +4,10 @@ import 'package:todo_app/component/customFont.dart';
 import 'package:todo_app/component/cutomColors.dart';
 
 class CustomDatePicker extends StatefulWidget {
-  CustomDatePicker(this.labelText, {super.key});
-  String? labelText;
+  final Function(String)? callBack;
+  final String? labelText;
+
+  const CustomDatePicker(this.labelText, {super.key, this.callBack});
 
   @override
   State<CustomDatePicker> createState() => _CustomDatePickerState();
@@ -57,13 +59,12 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
                   pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
               String formattedDate =
                   DateFormat('yyyy-MM-dd').format(pickedDate);
-              print(
-                  formattedDate); //formatted date output using intl package =>  2021-03-16
-              //you can implement different kind of Date Format here according to your requirement
 
               setState(() {
-                dateinput.text =
-                    formattedDate; //set output date to TextField value.
+                dateinput.text = formattedDate;
+
+                widget.callBack!(
+                    dateinput.text); //set output date to TextField value.
               });
             } else {
               print("Date is not selected");

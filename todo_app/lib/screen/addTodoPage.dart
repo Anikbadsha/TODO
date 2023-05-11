@@ -1,10 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:todo_app/component/customButton.dart';
 import 'package:todo_app/component/customDatePicker.dart';
 import 'package:todo_app/component/customFont.dart';
 import 'package:todo_app/component/cutomColors.dart';
+import 'package:todo_app/service/GetTodoApiService.dart';
 
 class AddTodopage extends StatefulWidget {
   const AddTodopage({super.key});
@@ -15,17 +16,10 @@ class AddTodopage extends StatefulWidget {
 
 class _AddTodopageState extends State<AddTodopage> {
   final GlobalKey<FormState> formkey = GlobalKey();
-  TextEditingController TitleInputcontroller = TextEditingController();
-  TextEditingController DescriptionInputController = TextEditingController();
-  TextEditingController dateInputController = TextEditingController();
-
-  bool _isobscure = true;
-
-  @override
-  void initState() {
-    dateInputController.text = ""; //set the initial value of text field
-    super.initState();
-  }
+  TextEditingController titleController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+  TextEditingController startDateController = TextEditingController();
+  TextEditingController endDateController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +36,8 @@ class _AddTodopageState extends State<AddTodopage> {
         body: Align(
           alignment: Alignment.topCenter,
           child: Container(
-            margin: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+            margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
             height: MediaQuery.of(context).size.height * 0.80,
             decoration: BoxDecoration(
               border: Border.all(
@@ -68,7 +62,7 @@ class _AddTodopageState extends State<AddTodopage> {
                     child: Column(
                       children: [
                         TextFormField(
-                          controller: TitleInputcontroller,
+                          controller: titleController,
                           decoration: InputDecoration(
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(16)),
@@ -85,7 +79,7 @@ class _AddTodopageState extends State<AddTodopage> {
                         TextFormField(
                           minLines: 3,
                           maxLines: 5,
-                          controller: DescriptionInputController,
+                          controller: descriptionController,
                           decoration: InputDecoration(
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(16)),
@@ -96,23 +90,45 @@ class _AddTodopageState extends State<AddTodopage> {
                               fillColor: CustomColor.primaryColor),
                           style: TextStyle(color: CustomColor.wColor),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 12,
                         ),
-                        CustomDatePicker("Start Date"),
-                        SizedBox(
+                        CustomDatePicker(
+                          "Start Time",
+                          callBack: (value) {
+                            setState(() {
+                              startDateController.text = value;
+                            });
+                          },
+                        ),
+                        const SizedBox(
                           height: 12,
                         ),
-                        CustomDatePicker("End Date"),
+                        CustomDatePicker(
+                          "End TIme",
+                          callBack: (value) {
+                            setState(() {
+                              endDateController.text = value;
+                            });
+                          },
+                        ),
                       ],
                     )),
                 SizedBox(
                   height: 16,
                 ),
-                customButton(
+                CustomButton(
                   CustomColor.primaryColor,
                   12,
                   "Create todo",
+                  onTap: () {
+                    GetTodoApi().createTodo(
+                      title: titleController.text,
+                      note: descriptionController.text,
+                      startDate: startDateController.text,
+                      endDate: endDateController.text,
+                    );
+                  },
                 ),
               ],
             ),
