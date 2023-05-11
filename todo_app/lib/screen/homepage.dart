@@ -1,17 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:todo_app/component/customButton.dart';
 import 'package:todo_app/component/customFont.dart';
 import 'package:todo_app/component/cutomColors.dart';
+import 'package:todo_app/model/todoList.dart';
 import 'package:todo_app/screen/addTodoPage.dart';
+import 'package:todo_app/service/GetTodoApiService.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    GetTodoApiService().fetchTodoData();
+    setState(() {});
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

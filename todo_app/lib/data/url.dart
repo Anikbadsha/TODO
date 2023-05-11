@@ -1,7 +1,7 @@
 class MyUrl {
   static String baseUrl = "https://genieinfo.tech/task/api/";
 
-  static String getTodoUrl = "${{baseUrl}}todo";
+  static String getTodoUrl = "https://genieinfo.tech/task/api/todo";
 
   static String createTodoUrl = "https://genieinfo.tech/task/api/todo/create";
 

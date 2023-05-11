@@ -99,11 +99,11 @@ class _AddTodopageState extends State<AddTodopage> {
                         SizedBox(
                           height: 12,
                         ),
-                        CustomDatePicker("Start Time"),
+                        CustomDatePicker("Start Date"),
                         SizedBox(
                           height: 12,
                         ),
-                        CustomDatePicker("End TIme"),
+                        CustomDatePicker("End Date"),
                       ],
                     )),
                 SizedBox(
