@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:html';
 
 import 'package:todo_app/data/url.dart';
 
@@ -30,7 +29,7 @@ class GetTodoApi {
     }
   }
 
-  Future<void> createTodo(
+  static Future<void> createTodo(
       {title, note, startDate, endDate, startTime, endTime}) async {
     /// dialog
 
@@ -70,4 +69,24 @@ class GetTodoApi {
       print('Error occurred: $error');
     }
   }
+
+
+  static Future<void> updateTask(int taskId, String title, String note, String startDate, String endDate, String startTime, String endTime) async {
+    var url = Uri.parse(MyUrl.updateTodoUrl);
+    var response = await http.post(url, body: {
+      'id': taskId.toString(),
+      'title': title,
+      'note': note,
+      'start_date': startDate,
+      'end_date': endDate,
+      'start_time': startTime,
+      'end_time': endTime
+    });
+    if (response.statusCode == 200) {
+      //TODO: Handle success response
+    } else {
+      //TODO: Handle error response
+    }
+  }
 }
+

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import 'package:todo_app/component/customButton.dart';
 import 'package:todo_app/component/customCard.dart';
 import 'package:todo_app/component/customFont.dart';
 import 'package:todo_app/component/customColors.dart';
@@ -8,7 +6,7 @@ import 'package:todo_app/screen/addTodoPage.dart';
 import 'package:todo_app/service/GetTodoApiService.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -60,7 +58,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void navigateToAddPage() {
-    final route = MaterialPageRoute(builder: (context) => AddTodopage());
+    final route = MaterialPageRoute(builder: (context) => const AddTodopage());
     Navigator.push(context, route);
   }
 }

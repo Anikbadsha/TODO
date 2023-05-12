@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/component/customColors.dart';
+import 'package:todo_app/component/customDialog.dart';
+import 'package:todo_app/component/popUpMenuButton.dart';
 import 'package:todo_app/model/todoModel.dart';
 import 'package:todo_app/service/GetTodoApiService.dart';
 
@@ -34,7 +36,7 @@ class CustomCard extends StatelessWidget {
                             Expanded(
                                 flex: 2,
                                 child: Icon(
-                                  Icons.view_list,
+                                  Icons.arrow_circle_right,
                                   color: CustomColor.primaryColor,
                                   size: 30,
                                 )),
@@ -81,13 +83,22 @@ class CustomCard extends StatelessWidget {
                                 )),
                             Expanded(
                               flex: 2,
-                              child: IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.timer,
-                                    color: CustomColor.primaryColor,
-                                    size: 30,
-                                  )),
+                              child: Column(
+                                children: [
+                                 MyPopupMenu(),
+                                  IconButton(
+                                    splashRadius: 15,
+                                      onPressed: () {
+                                        CustomDialog().dialogBuilder(context,index);
+
+                                      },
+                                      icon: Icon(
+                                        Icons.timer,
+                                        color: CustomColor.primaryColor,
+                                        size: 25,
+                                      )),
+                                ],
+                              ),
                             ),
                           ],
                         )
