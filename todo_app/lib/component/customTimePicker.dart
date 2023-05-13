@@ -50,16 +50,22 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
                 TimeOfDay? pickedTime = await showTimePicker(
                   context: context,
                   initialTime: TimeOfDay.now(),
+                  builder: (BuildContext context, Widget? child) {
+                    return MediaQuery(
+                      data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+                      child: child!,
+                    );
+                  },
                 );
 
                 if (pickedTime != null) {
-                  String formattedTime = DateFormat('HH:mm').format(
-                    DateTime(2021, 1, 1, pickedTime.hour, pickedTime.minute),
+                  String formattedTime = DateFormat('HH:mm:ss').format(
+                    DateTime(2021, 1, 1, pickedTime.hour, pickedTime.minute,),
                   );
 
                   setState(() {
                     timeInput.text = formattedTime;
-                    widget.callBack!(timeInput.text); //set output time to TextField value.
+                    widget.callBack!(formattedTime); //set output time to TextField value.
                   });
                 } else {
                   print("Time is not selected");

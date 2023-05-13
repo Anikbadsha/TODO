@@ -15,16 +15,14 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.06,
+      child: Container(
+        height: MediaQuery.of(context).size.height*0.06,
+        padding: EdgeInsets.symmetric(horizontal: 8),
         width: double.infinity,
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-              shadowColor: Colors.transparent,
-              backgroundColor: CustomColor.primaryColor,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12))),
-          onPressed: () {},
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: CustomColor.primaryColor),
+        child: Center(
           child: Text(
             "$buttonText",
             style: myFont(18, 0, 1, CustomColor.wColor, FontWeight.w700),

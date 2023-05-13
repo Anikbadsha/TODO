@@ -18,18 +18,22 @@ class CustomDialog {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Start Time ::${GetTodoApi.todoModel?.data![index]?.startTime}",
-                  style: (myFont(
-                      16, 0, 0, CustomColor.primaryColor, FontWeight.normal)),
+                Expanded(
+                  flex: 5,
+                  child: Text(
+                    "Start Time ::${GetTodoApi.todoModel?.data![index]?.startTime}",
+                    style: (myFont(
+                        16, 0, 0, CustomColor.primaryColor, FontWeight.normal)),
+                  ),
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  "End Time ::${GetTodoApi.todoModel?.data![index]?.startTime}",
-                  style: (myFont(
-                      16, 0, 0, CustomColor.primaryColor, FontWeight.normal)),
+
+                Expanded(
+                  flex: 5,
+                  child: Text(
+                    "End Time ::${GetTodoApi.todoModel?.data![index]?.startTime}",
+                    style: (myFont(
+                        16, 0, 0, CustomColor.primaryColor, FontWeight.normal)),
+                  ),
                 ),
               ],
             ),

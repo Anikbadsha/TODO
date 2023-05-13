@@ -15,9 +15,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
-    GetTodoApi.makeAPICall();
+    
     setState(() {
-
+      GetTodoApi.makeAPICall();
     });
     super.initState();
   }
@@ -32,14 +32,7 @@ class _HomePageState extends State<HomePage> {
           title: Text("${GetTodoApi.todoModel?.message}"),
           centerTitle: true,
         ),
-        floatingActionButton: FloatingActionButton.extended(
-          backgroundColor: CustomColor.primaryColor,
-          onPressed: navigateToAddPage,
-          label: Text(
-            "add todo",
-            style: myFont(22, 0, 0, CustomColor.wColor, FontWeight.w800),
-          ),
-        ),
+
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12.0,vertical: 8),
           child: Column(
@@ -49,10 +42,16 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
               Text("My Todo List",style: myFont(18,0,0,CustomColor.primaryColor,FontWeight.w700),),
-              Icon(Icons.add_task,color: CustomColor.primaryColor,),
+              IconButton(
+
+                onPressed: navigateToAddPage,
+
+                icon:Icon(Icons.add_task,color: CustomColor.primaryColor,)),
             ],),
 
-            CustomCard(),
+            Flexible(
+                
+                child: CustomCard()),
           ],),
         ),);
   }

@@ -5,10 +5,11 @@ import 'package:todo_app/component/customColors.dart';
 class TextInputField extends StatelessWidget {
   final TextEditingController controller;
   final String labelText;
+  final Function(String)? callBack;
 
   const TextInputField({
     required this.controller,
-    required this.labelText,
+    required this.labelText, this.callBack,
   });
 
   @override
@@ -21,6 +22,18 @@ class TextInputField extends StatelessWidget {
         color: CustomColor.primaryColor,
       ),
       child: TextField(
+        onTap: () {
+          if (callBack != null) {
+            String inputData;
+            callBack!( inputData=controller.text);
+            print("$inputData");
+          }
+        },
+        onChanged: (value) {
+          if (callBack != null) {
+            callBack!(value);
+          }
+        },
         controller: controller,
         decoration: InputDecoration(
           border: InputBorder.none,

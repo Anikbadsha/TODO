@@ -1,4 +1,6 @@
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:todo_app/component/customButton.dart';
 import 'package:todo_app/component/customDatePicker.dart';
@@ -8,6 +10,7 @@ import 'package:todo_app/component/titleInput.dart';
 import 'package:todo_app/service/GetTodoApiService.dart';
 
 import '../component/customTimePicker.dart';
+import 'homepage.dart';
 
 
 class AddTodopage extends StatefulWidget {
@@ -102,6 +105,7 @@ class _AddTodopageState extends State<AddTodopage> {
                         CustomTimePicker(
                           "Start Time",
                           callBack: (value) {
+                            startTimeController.text=value;
                             print("Selected Start Time: $value");
                           },
                         ),const SizedBox(
@@ -110,6 +114,7 @@ class _AddTodopageState extends State<AddTodopage> {
                         CustomTimePicker(
                           "End Time",
                           callBack: (value) {
+                            endTimeController.text=value;
                             print("Selected End Time: $value");
                           },
                         ),
@@ -123,14 +128,22 @@ class _AddTodopageState extends State<AddTodopage> {
                   12,
                   "Create todo",
                   onTap: () {
-                    GetTodoApi.createTodo(
-                      title: titleController.text,
-                      note: descriptionController.text,
-                      startDate: startDateController.text,
-                      endDate: endDateController.text,
-                      startTime: startTimeController.text,
-                      endTime: endTimeController.text,
-                    );
+
+
+                    setState(() {
+                      GetTodoApi.createTodo(
+                        title: titleController.text,
+                        note: descriptionController.text,
+                        startDate: startDateController.text,
+                        endDate: endDateController.text,
+                        startTime: startTimeController.text,
+                        endTime: endTimeController.text,
+
+
+                      );
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (context) => HomePage()));
+                    });
                   },
                 ),
               ],
