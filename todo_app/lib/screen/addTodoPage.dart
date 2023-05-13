@@ -4,6 +4,7 @@ import 'package:todo_app/component/customButton.dart';
 import 'package:todo_app/component/customDatePicker.dart';
 import 'package:todo_app/component/customFont.dart';
 import 'package:todo_app/component/customColors.dart';
+import 'package:todo_app/component/titleInput.dart';
 import 'package:todo_app/service/GetTodoApiService.dart';
 
 import '../component/customTimePicker.dart';
@@ -24,6 +25,7 @@ class _AddTodopageState extends State<AddTodopage> {
   TextEditingController endDateController = TextEditingController();
   TextEditingController startTimeController = TextEditingController();
   TextEditingController endTimeController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -65,47 +67,11 @@ class _AddTodopageState extends State<AddTodopage> {
                     key: formkey,
                     child: Column(
                       children: [
-                        TextFormField(
-                          enabled: true,
-                          controller: titleController,
-                          onChanged: (value){
-                            titleController.text =value;
-                          },
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(16)),
-                              hintStyle: myFont(16, 0, 0, CustomColor.wColor,
-                                  FontWeight.w600),
-                              hintText: "Title",
-                              filled: true,
-                              fillColor: CustomColor.primaryColor),
-                          style: TextStyle(color: CustomColor.wColor),
-                        ),
+                        TextInputField(controller: titleController, labelText: "Title"),
                         const SizedBox(
                           height: 12,
                         ),
-                        TextFormField(
-
-                          enabled: true,
-                          minLines: 3,
-                          maxLines: 5,
-                          controller: descriptionController,
-                          onChanged:(value){
-                            descriptionController.text =value;
-                          } ,
-                          decoration: InputDecoration(
-                            focusColor: CustomColor.wColor,
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(16)),
-                              hintStyle: myFont(16, 0, 0, CustomColor.wColor,
-                                  FontWeight.w600),
-                              hintText: "Description",
-                              filled: true,
-                              fillColor: CustomColor.primaryColor),
-                          style: TextStyle(
-
-                              color: CustomColor.wColor),
-                        ),
+                        TextInputField(controller: descriptionController, labelText: "Description"),
                         const SizedBox(
                           height: 12,
                         ),
@@ -126,6 +92,7 @@ class _AddTodopageState extends State<AddTodopage> {
                           callBack: (value) {
                             setState(() {
                               endDateController.text = value;
+
                             });
                           },
                         ),
