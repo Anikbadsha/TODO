@@ -48,7 +48,7 @@ class GetTodoApi {
 
 
     };
-    print(requestData);
+    // print(requestData);
     try {
 
       final response = await http.post(
@@ -77,7 +77,7 @@ class GetTodoApi {
   }
 
 
-  static Future<void> updateTask(int taskId, String title, String note, String startDate, String endDate, String startTime, String endTime) async {
+  static Future<void> updateTask( taskId,  title,  note,  startDate,  endDate,  startTime, endTime) async {
     var url = Uri.parse(MyUrl.updateTodoUrl);
     var response = await http.post(url, body: {
       'id': taskId.toString(),
@@ -94,5 +94,21 @@ class GetTodoApi {
       //TODO: Handle error response
     }
   }
+
+  static Future<void> deleteTask(int taskId) async {
+    var url = Uri.parse(MyUrl.deleteTodoUrl);
+    var response = await http.post(url, body: {
+      'id': taskId.toString(),
+    });
+    if (response.statusCode == 200) {
+//TODO: Handle success response
+    } else {
+//TODO: Handle error response
+    }
+  }
+
 }
+
+
+
 

@@ -6,8 +6,9 @@ import 'package:todo_app/component/customColors.dart';
 class CustomTimePicker extends StatefulWidget {
   final Function(String)? callBack;
   final String? labelText;
+  final String? time;
 
-  const CustomTimePicker(this.labelText, {Key? key, this.callBack}) : super(key: key);
+  const CustomTimePicker(this.labelText, {Key? key, this.callBack, this.time}) : super(key: key);
 
   @override
   State<CustomTimePicker> createState() => _CustomTimePickerState();
@@ -18,7 +19,7 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
 
   @override
   void initState() {
-    timeInput.text = ""; //set the initial value of text field
+    timeInput.text = widget.time??""; //set the initial value of text field
     super.initState();
   }
 

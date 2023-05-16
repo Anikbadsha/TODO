@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/component/customColors.dart';
 import 'package:todo_app/component/customFont.dart';
-import 'package:todo_app/screen/homepage.dart';
 import 'package:todo_app/service/GetTodoApiService.dart';
 
 class CustomDialog {
@@ -14,27 +13,53 @@ class CustomDialog {
           titleTextStyle:
               myFont(24, 0, 0, CustomColor.primaryColor, FontWeight.bold),
           content: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.05,
+            height: MediaQuery.of(context).size.height * 0.10,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+
                 Expanded(
                   flex: 5,
                   child: Text(
-                    "Start Time ::${GetTodoApi.todoModel?.data![index]?.startTime}",
+                    "Start Date:${GetTodoApi.todoModel?.data?[index].startDate}",
+                    style: myFont(
+                        16,
+                        0,
+                        0,
+                        CustomColor.primaryColor,
+                        FontWeight.normal),
+                  ),
+                ),
+                Expanded(
+                  flex: 5,
+                  child: Text(
+                    "End Date:${GetTodoApi.todoModel?.data?[index].endDate}",
+                    style: myFont(
+                        16,
+                        0,
+                        0,
+                        CustomColor.primaryColor,
+                        FontWeight.normal),
+                  ),
+                ),
+                Expanded(
+                  flex: 5,
+                  child: Text(
+                    "Start Time ::${GetTodoApi.todoModel?.data![index].startTime}",
+                    style: (myFont(
+                        16, 0, 0, CustomColor.primaryColor, FontWeight.normal)),
+                  ),
+                ),
+                Expanded(
+                  flex: 5,
+                  child: Text(
+                    "End Time ::${GetTodoApi.todoModel?.data![index].startTime}",
                     style: (myFont(
                         16, 0, 0, CustomColor.primaryColor, FontWeight.normal)),
                   ),
                 ),
 
-                Expanded(
-                  flex: 5,
-                  child: Text(
-                    "End Time ::${GetTodoApi.todoModel?.data![index]?.startTime}",
-                    style: (myFont(
-                        16, 0, 0, CustomColor.primaryColor, FontWeight.normal)),
-                  ),
-                ),
+
               ],
             ),
           ),
@@ -43,7 +68,11 @@ class CustomDialog {
               style: TextButton.styleFrom(
                 textStyle: Theme.of(context).textTheme.labelLarge,
               ),
-              child:  Text('Dismiss',style: myFont(16,1,0,CustomColor.primaryColor,FontWeight.bold),),
+              child: Text(
+                'Dismiss',
+                style:
+                    myFont(16, 1, 0, CustomColor.primaryColor, FontWeight.bold),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },

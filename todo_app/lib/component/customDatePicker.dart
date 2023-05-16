@@ -6,8 +6,9 @@ import 'package:todo_app/component/customColors.dart';
 class CustomDatePicker extends StatefulWidget {
   final Function(String)? callBack;
   final String? labelText;
+  final String? date;
 
-  const CustomDatePicker(this.labelText, {super.key, this.callBack});
+  const CustomDatePicker(this.labelText, {super.key, this.callBack, this.date});
 
   @override
   State<CustomDatePicker> createState() => _CustomDatePickerState();
@@ -18,7 +19,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
 
   @override
   void initState() {
-    dateinput.text = ""; //set the initial value of text field
+    dateinput.text = widget.date??""; //set the initial value of text field
     super.initState();
   }
 

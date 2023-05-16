@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/component/customColors.dart';
+import 'package:todo_app/component/my_context.dart';
+import 'package:todo_app/model/todoModel.dart';
+import 'package:todo_app/screen/edit_todo_page.dart';
+import 'package:todo_app/screen/homepage.dart';
 import 'package:todo_app/service/GetTodoApiService.dart';
+
 class MyPopupMenu extends StatefulWidget {
-  const MyPopupMenu({Key? key}) : super(key: key);
+  final TodoData? todoData;
+
+  const MyPopupMenu({Key? key, this.todoData}) : super(key: key);
 
   @override
   _MyPopupMenuState createState() => _MyPopupMenuState();
-
-
 }
 
 class _MyPopupMenuState extends State<MyPopupMenu> {
@@ -16,7 +21,6 @@ class _MyPopupMenuState extends State<MyPopupMenu> {
   Future<void> edit(BuildContext context) async {
     setState(() {
       _selectedOption = 'Edit';
-      // GetTodoApi.updateTask(taskId, title, note, startDate, endDate, startTime, endTime);
     });
   }
 
@@ -33,8 +37,17 @@ class _MyPopupMenuState extends State<MyPopupMenu> {
       onSelected: (value) {
         if (value == 'Edit') {
           edit(context);
+
+          GetContext.to(EditTodoPage(
+            todoData: widget.todoData,
+          ));
         } else if (value == 'Delete') {
           delete(context);
+
+          GetTodoApi.deleteTask(int.parse("${widget.todoData?.id}"));
+
+          GetContext.toReplace(const HomePage());
+
         }
       },
       itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
@@ -54,8 +67,11 @@ class _MyPopupMenuState extends State<MyPopupMenu> {
         ),
       ],
       child: ListTile(
-        title: Icon(Icons.menu,color: CustomColor.primaryColor,size: 25,)
-      ),
+          title: Icon(
+        Icons.menu,
+        color: CustomColor.primaryColor,
+        size: 25,
+      )),
     );
   }
 }

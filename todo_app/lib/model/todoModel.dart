@@ -13,14 +13,14 @@ class TodoModel {
     if (json['data'] != null) {
       data = [];
       json['data'].forEach((v) {
-        data?.add(Data.fromJson(v));
+        data?.add(TodoData.fromJson(v));
       });
     }
   }
   bool? success;
   int? code;
   String? message;
-  List<Data>? data;
+  List<TodoData>? data;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -34,8 +34,8 @@ class TodoModel {
   }
 }
 
-class Data {
-  Data({
+class TodoData {
+  TodoData({
     this.id,
     this.title,
     this.note,
@@ -48,7 +48,7 @@ class Data {
     this.updatedAt,
   });
 
-  Data.fromJson(dynamic json) {
+  TodoData.fromJson(dynamic json) {
     id = json['id'];
     title = json['title'];
     note = json['note'];

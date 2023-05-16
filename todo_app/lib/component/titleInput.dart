@@ -7,7 +7,7 @@ class TextInputField extends StatelessWidget {
   final String labelText;
   final Function(String)? callBack;
 
-  const TextInputField({
+  const TextInputField({super.key,
     required this.controller,
     required this.labelText, this.callBack,
   });
@@ -15,7 +15,7 @@ class TextInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
@@ -26,7 +26,7 @@ class TextInputField extends StatelessWidget {
           if (callBack != null) {
             String inputData;
             callBack!( inputData=controller.text);
-            print("$inputData");
+            print(inputData);
           }
         },
         onChanged: (value) {

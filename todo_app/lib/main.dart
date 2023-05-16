@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/component/customButton.dart';
-import 'package:todo_app/component/customCard.dart';
-import 'package:todo_app/component/customDatePicker.dart';
+import 'package:todo_app/component/my_context.dart';
 import 'package:todo_app/screen/homepage.dart';
 
 void main() {
@@ -16,6 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      navigatorKey: GetContext.navigatorKey,
       home: HomePage(),
     );
   }
